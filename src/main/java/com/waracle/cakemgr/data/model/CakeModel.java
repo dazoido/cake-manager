@@ -21,6 +21,9 @@ public class CakeModel {
 
     private String image;
 
+    public CakeModel() {
+    }
+
     public CakeModel(String title, String desc, String image) {
         this.title = title;
         this.desc = desc;
