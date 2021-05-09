@@ -8,5 +8,15 @@
 
 <h1>Cake Home</h1>
 
+<div th:each="cake : ${cakesList}">
+    <div>
+        <img th:src="${cake.image}" />
+        <p th:text="${cake.title}" />
+        <p th:text="${cake.desc}" />
+        </div>
+    </div>
+</div>
+
 </body>
+
 </html>
