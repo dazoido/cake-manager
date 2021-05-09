@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@Path("/")
+@Path("/cakes")
 public class CakeManagerService {
 
     private CakeRepository cakeRepository;
@@ -45,8 +45,12 @@ public class CakeManagerService {
     @Produces(MediaType.TEXT_PLAIN)
     public String add() {
         CakeModel cake = new CakeModel("ChocoCake", "A chocolate cake made with hmmm ... chocolate", "chocolate_cake.png");
-        CakeModel savedCake = cakeRepository.save(cake);
-        return "Added" + savedCake.toString();
+
+        if (!cakeRepository.existsByTitle(cake.getTitle())) {
+            CakeModel savedCake = cakeRepository.save(cake);
+            return "Added" + savedCake.toString();
+        }
+        return "Cake[" + cake.getTitle() + "] already exists"; 
     }
 
     @GET

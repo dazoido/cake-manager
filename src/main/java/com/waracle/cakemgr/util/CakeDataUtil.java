@@ -2,7 +2,7 @@ package com.waracle.cakemgr.util;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +31,7 @@ public class CakeDataUtil {
     public boolean loadData() {
         try {
             URL cakeDataURL = new URL(cakeDataUrlValue);
-            List<CakeModel> cakes = objectMapper.readValue(cakeDataURL, new TypeReference<List<CakeModel>>() {});
+            Set<CakeModel> cakes = objectMapper.readValue(cakeDataURL, new TypeReference<Set<CakeModel>>() {});
 
             cakeRepository.saveAll(cakes);
             return true;
