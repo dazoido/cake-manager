@@ -1,22 +1,42 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Cakes Home</title>
+    <title>Cakes List</title>
     <meta charset="UTF-8">
 </head>
+<style>
+    body {
+        font-family: Arial;
+        font-size: 12px;
+    }   
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .imgCard {
+        width: 300px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-bottom: 1px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #efefef;
+
+    }
+</style>
 <body>
 
-<h1>Cake Home</h1>
+<h1>Cake List</h1>
 
-<div th:each="cake : ${cakesList}">
-    <div>
+<div class="container" th:each="cake : ${cakesList}">
+    <div class="imgCard">
         <img th:src="${cake.image}" th:onerror="'this.src=\'' + @{/img/dummy-cake.jpg} + '\';'" width="100" />
-        <p th:text="${cake.title}" />
+        <h4 th:text="${cake.title}" />
         <p th:text="${cake.desc}" />
         </div>
     </div>
 </div>
 
 </body>
-
 </html>
