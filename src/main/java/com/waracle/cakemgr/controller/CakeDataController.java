@@ -41,7 +41,11 @@ public class CakeDataController {
     @GetMapping("/add")
     @ResponseBody
     public String add() {
-        CakeModel cake = new CakeModel("ChocoCake", "A chocolate cake made with hmmm ... chocolate", "chocolate_cake.png");
+        CakeModel cake = new CakeModel(
+                            "ChocoCake", 
+                            "A chocolate cake made with hmmm ... chocolate", 
+                            "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1043451_11-4713959.jpg?quality=90&resize=504,458"
+                            );
 
         if (!cakeRepository.existsByTitle(cake.getTitle())) {
             CakeModel savedCake = cakeRepository.save(cake);

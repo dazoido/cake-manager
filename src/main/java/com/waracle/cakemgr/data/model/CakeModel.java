@@ -1,5 +1,6 @@
 package com.waracle.cakemgr.data.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class CakeModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(name = "title", unique = true, nullable = false)
     private String title;
 
     private String desc;

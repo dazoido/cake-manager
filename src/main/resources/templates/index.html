@@ -10,7 +10,7 @@
 
 <div th:each="cake : ${cakesList}">
     <div>
-        <img th:src="${cake.image}" />
+        <img th:src="${cake.image}" th:onerror="'this.src=\'' + @{/img/dummy-cake.jpg} + '\';'" width="100" />
         <p th:text="${cake.title}" />
         <p th:text="${cake.desc}" />
         </div>
