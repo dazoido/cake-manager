@@ -59,6 +59,11 @@ public class CakeUIController {
             return "addCakeForm";
         }
 
+        if (cakeRepository.existsByTitle(cake.getTitle())) {
+            bindingResult.rejectValue("title", "error.title", "Title already exists");
+            return "addCakeForm";
+        }
+
         cakeRepository.save(cake);
         return "redirect:/";
     }
