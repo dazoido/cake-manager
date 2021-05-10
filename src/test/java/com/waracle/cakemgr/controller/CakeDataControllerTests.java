@@ -40,7 +40,7 @@ public class CakeDataControllerTests {
         CakeModel savedCake = cakeDataController.add(cake);
 
         // Then
-        assertThat("SavedCake object is not null", savedCake == null);
+        assertThat("SavedCake object is not null", savedCake != null);
         assertThat("Cake details are saved correctly", cake.getTitle().equals(savedCake.getTitle()));
     }
 
