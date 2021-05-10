@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Cakes List</title>
+    <title>Add Cake</title>
     <meta charset="UTF-8">
 </head>
 <style>
@@ -13,10 +13,8 @@
         display: flex;
         flex-wrap: wrap;
     }
-    .imgCard {
-        width: 150px;
-        max-width: 150px;
-        min-height: 250px;
+    .formCard {
+        width: 350px;
         margin-left: 20px;
         margin-bottom: 10px;
         padding: 10px;
@@ -26,9 +24,6 @@
         background-color: #efefef;
 
     }
-    .imgWrap {
-        min-height: 160px;
-    }
     .nav {
         width: 200px;
         padding: 10px;
@@ -36,10 +31,15 @@
     .navItem {
         margin-left: 10px;
     }
+    label {
+        width: 80px;
+        display: inline-block;
+        font-weight: bold;
+    }
 </style>
 <body>
 
-<h1>Cake List</h1>
+<h1>Add Cake</h1>
 
 <div class="nav container">
     <div class="navItem"><a href="/">Home</a></div>
@@ -47,14 +47,14 @@
 </div>
 
 <div class="container">
-    <div th:each="cake : ${cakesList}">
-        <div class="imgCard">
-            <div class="imgWrap">
-                <img th:src="${cake.image}" th:onerror="'this.src=\'' + @{/img/dummy-cake.jpg} + '\';'" width="150" />
-            </div>
-            <h4 th:text="${cake.title}" />
-            <p th:text="${cake.desc}" />
-            </div>
+    <div class="formCard">
+        <h3>Enter cake details</h4>
+            <form action="#" th:action="@{/add}" th:object="${cake}" method="post">
+                <p><label>Title:</label> <input type="text" th:field="*{title}" /></p>
+                <p><label>Description:</label> <input type="text" th:field="*{desc}" /></p>
+                <p><label>Image:</label> <input type="text" th:field="*{image}" /></p>
+                <p><input type="submit" value="Add Cake" /> <input type="reset" value="Reset" /></p>
+            </form>
         </div>
     </div>
 </div>
