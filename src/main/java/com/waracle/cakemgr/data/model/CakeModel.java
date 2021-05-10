@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "cake", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
@@ -17,10 +18,13 @@ public class CakeModel {
     private long id;
 
     @Column(name = "title", unique = true, nullable = false)
+    @NotBlank
     private String title;
 
+    @NotBlank
     private String desc;
 
+    @NotBlank
     private String image;
 
     public CakeModel() {
@@ -40,6 +44,7 @@ public class CakeModel {
         this.id = id;
     }
 
+    
     public String getTitle() {
         return title;
     }
@@ -48,6 +53,7 @@ public class CakeModel {
         this.title = title;
     }
 
+    @NotBlank
     public String getDesc() {
         return desc;
     }
@@ -56,6 +62,7 @@ public class CakeModel {
         this.desc = desc;
     }
 
+    @NotBlank
     public String getImage() {
         return image;
     }

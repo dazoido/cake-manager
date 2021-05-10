@@ -14,7 +14,7 @@
         flex-wrap: wrap;
     }
     .formCard {
-        width: 350px;
+        width: 400px;
         margin-left: 20px;
         margin-bottom: 10px;
         padding: 10px;
@@ -36,6 +36,12 @@
         display: inline-block;
         font-weight: bold;
     }
+    .error {
+        color: rgb(158, 55, 55);
+        display: inline-block;
+        text-transform: capitalize;
+        margin-left: 15px;
+    }
 </style>
 <body>
 
@@ -48,11 +54,20 @@
 
 <div class="container">
     <div class="formCard">
-        <h3>Enter cake details</h4>
+        <h3>Enter cake details</h3>
             <form action="#" th:action="@{/add}" th:object="${cake}" method="post">
-                <p><label>Title:</label> <input type="text" th:field="*{title}" /></p>
-                <p><label>Description:</label> <input type="text" th:field="*{desc}" /></p>
-                <p><label>Image:</label> <input type="text" th:field="*{image}" /></p>
+                <p>
+                    <label>Title:</label> <input type="text" th:field="*{title}" />
+                    <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
+                </p>
+                <p>
+                    <label>Description:</label> <input type="text" th:field="*{desc}" />                    
+                    <span class="error" th:if="${#fields.hasErrors('desc')}" th:errors="*{desc}" />
+                </p>
+                <p>
+                    <label>Image:</label> <input type="text" th:field="*{image}" />
+                    <span class="error" th:if="${#fields.hasErrors('image')}" th:errors="*{image}" />
+                </p>
                 <p><input type="submit" value="Add Cake" /> <input type="reset" value="Reset" /></p>
             </form>
         </div>
