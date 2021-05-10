@@ -3,6 +3,7 @@ package com.waracle.cakemgr.util;
 import java.net.URL;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,6 +33,7 @@ public class CakeDataUtil {
         this.objectMapper = objectMapper;
     }
 
+    @PostConstruct
     public boolean loadData() {
         try {
             URL cakeDataURL = new URL(cakeDataUrlValue);

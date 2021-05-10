@@ -54,9 +54,10 @@ public class CakeDataController {
         return "Cake[" + cake.getTitle() + "] already exists"; 
     }
 
-    @GetMapping("/load")
+    @GetMapping("/reset")
     @ResponseBody
-    public String loadData() {
+    public String resetData() {
+        cakeRepository.deleteAll();
         boolean loaded = cakeDataUtil.loadData();
 
         if (loaded) {
