@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.waracle.cakemgr.data.model.CakeModel;
 import com.waracle.cakemgr.data.repository.CakeRepository;
+import com.waracle.cakemgr.exception.BadRequestException;
 import com.waracle.cakemgr.util.CakeDataUtil;
 
 import org.slf4j.Logger;
@@ -49,15 +50,17 @@ public class CakeDataController {
 
     @RequestMapping(method=RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED) 
-    public void add(@RequestBody @Valid CakeModel cake) throws Exception {
-
+    public CakeModel add(@RequestBody @Valid CakeModel cake) throws BadRequestException, Exception {
+        CakeModel savedCake = null;
         if (cake != null) {
             if (cakeRepository.existsByTitle(cake.getTitle())) {
-                throw new Exception("Cake already exits with given title[" + cake.getTitle() + "]");
+                logger.warn("add() cake already exists with given title[" + cake.getTitle() + "]");      
+                throw new BadRequestException("Cake already exists with given title[" + cake.getTitle() + "]"); // TODO fix message propogation to API message returned to client
             }
             logger.info("add() saved cake[" + cake.toString() + "]");      
-            cakeRepository.save(cake);
+            savedCake = cakeRepository.save(cake);
         }
+        return savedCake;
     }
 
     @GetMapping("/resetData")

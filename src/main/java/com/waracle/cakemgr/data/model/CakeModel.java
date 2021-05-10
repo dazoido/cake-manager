@@ -75,8 +75,8 @@ public class CakeModel {
     public String toString() {
         return "Cake["
                     + "title => " + this.title
-                    + "desc => " + this.desc
-                    + "image => " + this.image
+                    + " desc => " + this.desc
+                    + " image => " + this.image
                     + "]";
     }
 }
