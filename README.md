@@ -128,3 +128,15 @@ CI has been implement for this repository using Github Actions. Automatic builds
 
 ![image](https://user-images.githubusercontent.com/22031811/117861152-063f2f80-b289-11eb-87e5-dd1c6ed2be62.png)
 
+## TODOs
+
+Given more time the following items would be implemented:
+
+1. Intergrate UI with Oauth
+1. Containerise using docker
+1. Add authentication to API/REST tier.
+1. Add more unit and integration tests
+1. Implement code coverage and threshold alerts with Jacoco or alternative
+1. Use a css framework such as Twitter Bootstrap or Semantic UI for UI styling and remove hardcoded/in-line css
+1. Implement and style error pages for /error mapping for /error
+1. Review and apply key logging statements across code at appropriate log levels
