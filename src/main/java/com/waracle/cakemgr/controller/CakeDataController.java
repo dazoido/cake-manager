@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,7 +64,7 @@ public class CakeDataController {
         return savedCake;
     }
 
-    @GetMapping("/resetData")
+    @PostMapping("/reset")
     public void resetData() {
         cakeRepository.deleteAll();
         boolean loaded = cakeDataUtil.loadData();
@@ -75,22 +76,5 @@ public class CakeDataController {
         }
     }
 
-    @GetMapping("/downloadData")
-    public ResponseEntity<byte[]> downloadData() throws Exception {
-
-		List<CakeModel> cakes = cakeRepository.findAll();
-        
-        // TODO: Should we throw new exception if cakes is null or empty?
-
-		String json = objectMapper.writeValueAsString(cakes);
-		byte[] inputStrBytes = json.getBytes();
-
-		String fileName = "cakes.json";
-		HttpHeaders respHeaders = new HttpHeaders();
-		respHeaders.setContentLength(inputStrBytes.length);
-		respHeaders.setContentType(new MediaType("text", "json"));
-		respHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-		respHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName);
-		return new ResponseEntity<byte[]>(inputStrBytes, respHeaders, HttpStatus.OK);
-    } 
+    
 }

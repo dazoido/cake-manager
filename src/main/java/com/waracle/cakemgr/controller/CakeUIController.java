@@ -4,12 +4,17 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.waracle.cakemgr.data.model.CakeModel;
 import com.waracle.cakemgr.data.repository.CakeRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,10 +28,12 @@ public class CakeUIController {
     private static final Logger logger = LoggerFactory.getLogger(CakeUIController.class);
     
     private CakeRepository cakeRepository;
-    
+    private ObjectMapper objectMapper;
+
     @Autowired
-    public CakeUIController(CakeRepository cakeRepository) {
+    public CakeUIController(CakeRepository cakeRepository, ObjectMapper objectMapper) {
         this.cakeRepository = cakeRepository;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping("/")
@@ -68,4 +75,22 @@ public class CakeUIController {
         return "redirect:/";
     }
 
+    @GetMapping("/download")
+    public ResponseEntity<byte[]> downloadData() throws Exception {
+
+		List<CakeModel> cakes = cakeRepository.findAll();
+        
+        // TODO: Should we throw new exception if cakes is null or empty?
+
+		String json = objectMapper.writeValueAsString(cakes);
+		byte[] inputStrBytes = json.getBytes();
+
+		String fileName = "cakes.json";
+		HttpHeaders respHeaders = new HttpHeaders();
+		respHeaders.setContentLength(inputStrBytes.length);
+		respHeaders.setContentType(new MediaType("text", "json"));
+		respHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+		respHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName);
+		return new ResponseEntity<byte[]>(inputStrBytes, respHeaders, HttpStatus.OK);
+    } 
 }
