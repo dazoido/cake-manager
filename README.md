@@ -121,3 +121,10 @@ This can also be viewed at:
 * eb2e9d5 added support for spring jpa to use for adding dummy cake
 * 62e5b9f fixed package hierachy added skeleton and support for Sprint Boot project
 ```
+
+## Continuous Integration (CI)
+
+CI has been implement for this repository using Github Actions. Automatic builds (including unit test execution) will be triggered on `push` or `pull requests`
+
+![image](https://user-images.githubusercontent.com/22031811/117861152-063f2f80-b289-11eb-87e5-dd1c6ed2be62.png)
+
