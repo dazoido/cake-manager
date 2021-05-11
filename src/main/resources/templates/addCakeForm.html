@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Cake</title>
+    <meta charset="UTF-8">
+</head>
+<style>
+    body {
+        font-family: Arial;
+        font-size: 12px;
+    }   
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .formCard {
+        width: 400px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-bottom: 1px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #efefef;
+
+    }
+    .nav {
+        width: 200px;
+        padding: 10px;
+    }
+    .navItem {
+        margin-left: 10px;
+    }
+    label {
+        width: 80px;
+        display: inline-block;
+        font-weight: bold;
+    }
+    .error {
+        color: rgb(158, 55, 55);
+        display: inline-block;
+        text-transform: capitalize;
+        margin-left: 15px;
+    }
+</style>
+<body>
+
+<h1>Add Cake</h1>
+
+<div class="nav container">
+    <div class="navItem"><a href="/">Home</a></div>
+    <div class="navItem"><a href="/add">Add Cake</a></div>
+    <div class="navItem"><a href="/download">Download Data (JSON)</a></div>
+</div>
+
+<div class="container">
+    <div class="formCard">
+        <h3>Enter cake details</h3>
+            <form action="#" th:action="@{/add}" th:object="${cake}" method="post">
+                <p>
+                    <label>Title:</label> <input type="text" th:field="*{title}" />
+                    <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
+                </p>
+                <p>
+                    <label>Description:</label> <input type="text" th:field="*{desc}" />                    
+                    <span class="error" th:if="${#fields.hasErrors('desc')}" th:errors="*{desc}" />
+                </p>
+                <p>
+                    <label>Image:</label> <input type="text" th:field="*{image}" />
+                    <span class="error" th:if="${#fields.hasErrors('image')}" th:errors="*{image}" />
+                </p>
+                <p><input type="submit" value="Add Cake" /> <input type="reset" value="Reset" /></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

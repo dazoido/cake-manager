@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cakes List</title>
+    <meta charset="UTF-8">
+</head>
+<style>
+    body {
+        font-family: Arial;
+        font-size: 12px;
+    }   
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .imgCard {
+        width: 150px;
+        max-width: 150px;
+        min-height: 250px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-bottom: 1px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #efefef;
+    }
+    .imgWrap {
+        min-height: 160px;
+    }
+    .nav {
+        width: 500px;
+        padding: 10px;
+    }
+    .navItem {
+        margin-left: 10px;
+    }
+</style>
+<body>
+
+<h1>Cake List</h1>
+
+<div class="nav container">
+    <div class="navItem"><a href="/">Home</a></div>
+    <div class="navItem"><a href="/add">Add Cake</a></div>
+    <div class="navItem"><a href="/download">Download Data (JSON)</a></div>
+</div>
+
+<div class="container">
+    <div th:each="cake : ${cakesList}">
+        <div class="imgCard">
+            <div class="imgWrap">
+                <img th:src="${cake.image}" th:onerror="'this.src=\'' + @{/img/dummy-cake.jpg} + '\';'" width="150" />
+            </div>
+            <h4 th:text="${cake.title}" />
+            <p th:text="${cake.desc}" />
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
