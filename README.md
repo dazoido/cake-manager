@@ -88,3 +88,36 @@ Drops cake data and reloads from [source](https://gist.githubusercontent.com/har
 curl --location --request POST 'localhost:8080/cakes/resetData'
 ```
 
+## Change log
+
+Key changes/commits made to the original `master` branch are listed below:
+
+This can also be viewed at:
+ * [development branch commits](https://github.com/dazoido/cake-manager/commits/development)
+  * [master branch commits](https://github.com/dazoido/cake-manager/commits/master)
+```
+* 9617f76 Added README.md, removed README.txt
+* c8692df refactored controllers, moved download facility to UI controller, update UI nav links
+* dab81e9 (origin/development) Merge branch 'development' of https://github.com/dazoido/cake-manager into development
+* d22e39f (master-backup) corrected assertion on controller test
+* a1dff44 refactored test, added unit tests for CakeDataController
+* f512231 added link to download JSOn in UI nav, updated server shudown to graceful
+* 0cc79a8 improved response and exception handling for /cakes/add POST
+* a356015 refactor DataControllor to RestController, added json file download endpoint
+* a79ce24 added validation to prevent cakes with duplicate titles via UI
+* d912ca0 implemented form validation for addCakeForm, bit more styling :-)
+* af28538 added impl to save cake details submitted via UI form
+* 9ce8eb0 updated to load json data on startup added reset data endpoint
+* 1cacf06 more template styling to look a bit nicer
+* 94b6f29 fix deduping on load data, updated template view for cake list display
+* 6f94841 port JerseyService to Controller, as can't use both together doh!
+* 96d0b72 add support for thymeleaf templates, add UI controller for user management bits
+* 3ba0f73 remove ability to add duplicate cakes with same title
+* 4dd8eba remove redundant code, components and config
+* edbfca8 added implementation to load json data from url
+* 9dc43ed added utility script to refresh vscode classpath
+* c3e3d20 updated to use JpaRepository, added test to validate data save and fetch from db
+* a188fae added simple utility script for compiling and launching app
+* eb2e9d5 added support for spring jpa to use for adding dummy cake
+* 62e5b9f fixed package hierachy added skeleton and support for Sprint Boot project
+```
